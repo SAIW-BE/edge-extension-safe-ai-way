@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Installeer Safe AI Way op Microsoft Edge</title>
+  <meta name="description" content="Stap-voor-stap installatie van de Safe AI Way browserextensie op Microsoft Edge. Duurt 2 minuten." />
+  <style>
+    :root {
+      --brand: #0b5fff;
+      --brand-dark: #0846c4;
+      --ink: #0f172a;
+      --muted: #64748b;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --success: #16a34a;
+      --warn-bg: #fff7ed;
+      --warn-border: #fed7aa;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 760px; margin: 0 auto; padding: 32px 20px 64px; }
+    header { text-align: center; margin-bottom: 32px; }
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--brand);
+      margin-bottom: 18px;
+    }
+    .logo-dot {
+      width: 12px; height: 12px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--brand), #06b6d4);
+    }
+    h1 { font-size: 28px; margin: 0 0 8px; letter-spacing: -0.01em; }
+    .lead { color: var(--muted); margin: 0 0 24px; font-size: 16px; }
+
+    .download {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--brand);
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 14px 24px;
+      border-radius: 10px;
+      box-shadow: 0 4px 14px rgba(11, 95, 255, 0.25);
+      transition: background 0.15s;
+    }
+    .download:hover { background: var(--brand-dark); }
+    .download svg { width: 18px; height: 18px; }
+
+    .meta {
+      margin-top: 12px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    ol.steps {
+      list-style: none;
+      padding: 0;
+      margin: 40px 0 32px;
+      counter-reset: step;
+    }
+    ol.steps > li {
+      counter-increment: step;
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    ol.steps > li::before {
+      content: counter(step);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: var(--brand);
+      color: white;
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: 16px;
+    }
+    .step-body h3 { margin: 4px 0 8px; font-size: 17px; }
+    .step-body p { margin: 0 0 12px; color: var(--ink); }
+    .step-body .hint { color: var(--muted); font-size: 14px; margin-top: 6px; }
+
+    .url-box {
+      display: inline-block;
+      background: #f1f5f9;
+      border: 1px solid var(--border);
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
+      font-size: 14px;
+      color: var(--ink);
+    }
+
+    .screenshot {
+      margin: 12px 0 4px;
+      border: 2px dashed var(--border);
+      border-radius: 8px;
+      background: #f8fafc;
+      min-height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+      padding: 16px;
+      overflow: hidden;
+    }
+    .screenshot img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+    }
+    .screenshot-caption {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .verify {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 32px;
+    }
+    .verify h2 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      color: var(--success);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .verify h2::before { content: "✓"; font-weight: 900; }
+    .verify ul { margin: 8px 0 0 18px; padding: 0; }
+    .verify li { margin: 4px 0; }
+
+    .warn {
+      background: var(--warn-bg);
+      border: 1px solid var(--warn-border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 14px;
+    }
+    .warn strong { display: block; margin-bottom: 4px; }
+
+    .faq {
+      margin-top: 40px;
+    }
+    .faq h2 { font-size: 20px; margin: 0 0 12px; }
+    .faq details {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin-bottom: 8px;
+    }
+    .faq summary {
+      cursor: pointer;
+      font-weight: 600;
+      list-style: none;
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after {
+      content: "+";
+      float: right;
+      font-weight: 400;
+      color: var(--muted);
+    }
+    .faq details[open] summary::after { content: "−"; }
+    .faq p { margin: 10px 0 0; color: var(--ink); font-size: 14px; }
+
+    footer {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--muted);
+      text-align: center;
+    }
+    footer a { color: var(--brand); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* PRINT — handout-versie, fit op één A4 */
+    @media print {
+      body { background: white; }
+      .container { padding: 12mm 14mm; max-width: 100%; }
+      .download {
+        background: white;
+        color: var(--brand);
+        border: 2px solid var(--brand);
+        box-shadow: none;
+        padding: 8px 14px;
+      }
+      .download svg { display: none; }
+      ol.steps > li {
+        page-break-inside: avoid;
+        padding: 10px 14px;
+        margin-bottom: 8px;
+        box-shadow: none;
+      }
+      .screenshot { min-height: 0; padding: 6px; }
+      .screenshot img { max-height: 110px; }
+      .faq { display: none; }
+      .verify { padding: 10px 14px; margin-top: 12px; }
+      footer { margin-top: 16px; padding-top: 8px; }
+      header { margin-bottom: 16px; }
+      h1 { font-size: 22px; }
+      .lead { font-size: 13px; margin-bottom: 12px; }
+      .meta { display: none; }
+      .warn { padding: 8px 12px; margin: 8px 0; font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo"><span class="logo-dot"></span> Safe AI Way</div>
+      <h1>Installeer de extensie op Microsoft Edge</h1>
+      <p class="lead">5 stappen, ongeveer 2 minuten. Geen account nodig.</p>
+      <a class="download" href="./safe-ai-way-edge-v2.1.0.zip" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download het installatiebestand (.zip)
+      </a>
+      <div class="meta">Versie 2.1.0 · Werkt op Microsoft Edge (Windows en macOS)</div>
+    </header>
+
+    <div class="warn">
+      <strong>⚠ Lees vóór je begint</strong>
+      Werkt enkel op Microsoft Edge. Chrome en Firefox werken niet met deze installatieroute. Heb je een Chromebook? Spreek je leerkracht aan — voor jouw toestel volgt een alternatieve installatie.
+    </div>
+
+    <ol class="steps">
+      <li>
+        <div class="step-body">
+          <h3>Pak het ZIP-bestand uit</h3>
+          <p>Open je <strong>Downloads</strong>-map en zoek <code>safe-ai-way-edge-v2.1.0.zip</code>. Rechtsklik → <strong>Alles uitpakken…</strong> → kies bv. een map op je bureaublad genaamd <code>safe-ai-way</code>.</p>
+          <p class="hint">Belangrijk: niet de ZIP zelf gebruiken — Edge heeft de uitgepakte mapje nodig.</p>
+          <div class="screenshot">
+            <img src="screenshots/step-1-unzip.png" alt="ZIP-bestand uitpakken in Windows Verkenner" onerror="this.style.display='none';this.parentNode.textContent='[ Screenshot: rechtsklik op ZIP → Alles uitpakken… ]';" />
+          </div>
+        </div>
+      </li>
+
+      <li>
+        <div class="step-body">
+          <h3>Open de extensies-pagina van Edge</h3>
+          <p>Open Edge en typ in de adresbalk: <span class="url-box">edge://extensions</span></p>
+          <p class="hint">Of: klik op de drie puntjes rechtsboven → <em>Uitbreidingen</em> → <em>Uitbreidingen beheren</em>.</p>
+          <div class="screenshot">
+            <img src="screenshots/step-2-edge-extensions.png" alt="edge://extensions pagina geopend in Microsoft Edge" onerror="this.style.display='none';this.parentNode.textContent='[ Screenshot: edge://extensions pagina ]';" />
+          </div>
+        </div>
+      </li>
+
+      <li>
+        <div class="step-body">
+          <h3>Schakel "Ontwikkelaarsmodus" aan</h3>
+          <p>Onderaan de linkerkolom staat een schuifregelaar <strong>Ontwikkelaarsmodus</strong>. Zet die op AAN.</p>
+          <p class="hint">Hiermee mag Edge tijdelijk een extensie van buiten de Edge-store laden. Je kan dit later weer uitzetten.</p>
+          <div class="screenshot">
+            <img src="screenshots/step-3-dev-mode.png" alt="Ontwikkelaarsmodus toggle ingeschakeld in edge://extensions" onerror="this.style.display='none';this.parentNode.textContent='[ Screenshot: Ontwikkelaarsmodus-toggle linksonder aanstaan ]';" />
+          </div>
+        </div>
+      </li>
+
+      <li>
+        <div class="step-body">
+          <h3>Sleep de uitgepakte map op de pagina</h3>
+          <p>Sleep de map <code>safe-ai-way</code> (die je in stap 1 hebt aangemaakt) vanuit Verkenner rechtstreeks <strong>op</strong> de extensies-pagina in Edge.</p>
+          <p class="hint">Alternatief: klik <strong>"Uitgepakte versie laden"</strong> bovenaan en selecteer de map.</p>
+          <div class="screenshot">
+            <img src="screenshots/step-4-drag-folder.png" alt="Mapje slepen op edge://extensions of Uitgepakte versie laden klikken" onerror="this.style.display='none';this.parentNode.textContent='[ Screenshot: mapje slepen of \"Uitgepakte versie laden\" knop ]';" />
+          </div>
+        </div>
+      </li>
+
+      <li>
+        <div class="step-body">
+          <h3>Bevestig en pin de extensie</h3>
+          <p>Klik <strong>"Extensie toevoegen"</strong> in de bevestigingsdialoog. Klik daarna op het puzzelstukje rechtsboven in Edge → pin het <strong>Safe AI Way</strong>-icoontje vast aan de werkbalk.</p>
+          <div class="screenshot">
+            <img src="screenshots/step-5-pin.png" alt="Safe AI Way icoon vastgepind aan Edge werkbalk" onerror="this.style.display='none';this.parentNode.textContent='[ Screenshot: extensie zichtbaar in toolbar ]';" />
+          </div>
+        </div>
+      </li>
+    </ol>
+
+    <div class="verify">
+      <h2>Werkt het?</h2>
+      <ul>
+        <li>Het Safe AI Way-icoon staat rechtsboven in je Edge-werkbalk.</li>
+        <li>Open <a href="https://chatgpt.com" target="_blank" rel="noopener">chatgpt.com</a> en typ in het invoerveld: <em>"mijn telefoon is 0470 12 34 56"</em>.</li>
+        <li>Het telefoonnummer wordt automatisch gemaskeerd vóór verzending.</li>
+        <li>Klik op het Safe AI Way-icoon → je ziet de instellingenpopup verschijnen.</li>
+      </ul>
+    </div>
+
+    <div class="faq">
+      <h2>Iets niet zoals verwacht?</h2>
+
+      <details>
+        <summary>Edge zegt "Deze extensie komt van een onbekende bron"</summary>
+        <p>Dit gebeurt als je het <code>.crx</code>-bestand probeert te installeren. Gebruik in plaats daarvan de <strong>uitgepakte map</strong> via stap 4 hierboven.</p>
+      </details>
+
+      <details>
+        <summary>De "Uitgepakte versie laden"-knop is niet zichtbaar</summary>
+        <p>Ontwikkelaarsmodus staat dan nog uit. Ga naar stap 3 en zet de schuifregelaar links onderaan op AAN.</p>
+      </details>
+
+      <details>
+        <summary>De extensie verdwijnt na herstart van Edge</summary>
+        <p>Edge toont een waarschuwing voor extensies in ontwikkelaarsmodus en kan ze tijdelijk uitschakelen. Klik op de waarschuwing en kies <strong>"Behouden"</strong>, of activeer de extensie opnieuw via <code>edge://extensions</code>.</p>
+      </details>
+
+      <details>
+        <summary>Op een Chromebook werkt deze methode niet</summary>
+        <p>Chromebooks blokkeren extensies van buiten de Chrome Web Store. Spreek je leerkracht aan voor een alternatieve installatie of installeer thuis op een persoonlijke laptop.</p>
+      </details>
+
+      <details>
+        <summary>Ik krijg een organisatiecode-vraag bij eerste activatie</summary>
+        <p>De code wordt tijdens de demo door je leerkracht op het bord getoond. Plak hem in het invoerveld en klik op <strong>Activeren</strong>.</p>
+      </details>
+    </div>
+
+    <footer>
+      Hulp nodig? Mail <a href="mailto:leyssenskevin@gmail.com">leyssenskevin@gmail.com</a><br />
+      Safe AI Way · <a href="https://www.safeaiway.com">safeaiway.com</a>
+    </footer>
+  </div>
+</body>
+</html>
